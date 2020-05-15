@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>Issue</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h1 th:text="'Profile of user - ' + ${user.account}"></h1>
+    <table class="ui table" th:if="${user}">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Roles</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${user}">
+            <td th:text="*{account}">DUMMY SUBJECT</td>
+            <td th:text="*{email}">DUMMY SUBJECT</td>
+            <td th:text="*{roles}">DUMMY SUBJECT</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+
+    <div class="container text-center" style="min-height: 75%">
+        <h5 th:text="'Текущее имя пользователя - ' + ${user.account}"></h5>
+        <form method="post" action="/user/profile/editUsername">
+            <div class="form-group row justify-content-center mt-4">
+                <label class="col-sm-2 col-form-label">Новое имя пользователя</label>
+                <div class="col-sm-6">
+                    <input th:value="${user.account}" type="text" name="username" class="form-control"
+                           placeholder="Новое имя пользователя"
+                    />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+
+        <br>
+        <br>
+
+        <h5 th:text="'Текущее email пользователя - ' + ${user.email}"></h5>
+        <form method="post" action="/user/profile/editEmail">
+            <div class="form-group row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">Новый email</label>
+                <div class="col-sm-6">
+                    <input type="email" required="required" name="email" class="form-control"
+                           placeholder="example@example.com"/>
+                </div>
+            </div>
+            <div class="form-group row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">Пароль</label>
+                <div class="col-sm-6">
+                    <input type="password" required="required" name="password" class="form-control"
+                           placeholder="Пароль"/>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+
+        <br>
+        <br>
+
+        <h5>Изменение пароля</h5>
+        <form method="post" action="/user/profile/editPassword">
+            <div class="form-group row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">Текущий пароль</label>
+                <div class="col-sm-6">
+                    <input type="password" required="required" name="currentPassword" class="form-control"
+                           placeholder="Текущий пароль"/>
+                </div>
+            </div>
+            <div class="form-group row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">Новый пароль</label>
+                <div class="col-sm-6 justify-content-center ">
+                    <input type="password" required="required" name="newPassword" class="form-control"
+                           placeholder="Новый пароль"/>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+
+
+</div>
+</div>
+</body>
+</html>

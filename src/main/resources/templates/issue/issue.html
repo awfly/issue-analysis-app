@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>Issue</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h1>Issue</h1>
+    <table class="ui table" th:if="${issue}">
+        <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>Subject</th>
+            <th>Description</th>
+            <th>Author</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${issue}">
+            <td th:text="*{issueId}">DUMMY ISSUE ID</td>
+            <td th:text="*{subject}">DUMMY SUBJECT</td>
+            <td th:text="*{description}">DUMMY SUBJECT</td>
+            <td th:text="${issue.getPostedBy().getAccount()}">DUMMY AUTHOR</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

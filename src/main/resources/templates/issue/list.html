@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>Issues</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h1>Issues</h1>
+    <a class="ui button" th:href="@{/issue/new}">New Issue</a>
+    <a class="ui button" th:href="@{/issue/newJiraIssue}">New Jira Issue</a>
+    <a class="ui button red" th:href="@{/issue/deleteJiraIssue}">Delete Jira Issue</a>
+    <table class="ui table" th:if="${issues}">
+        <thead>
+            <tr>
+                <th>Identifier</th>
+                <th>Subject</th>
+                <th>Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="issue : ${issues}" th:object="${issue}">
+                <td th:text="*{issueId}">DUMMY ISSUE ID</td>
+                <td>
+                    <a th:text="*{subject}" th:href="@{'issue/' + ${issue.issueId}}" ></a>
+                </td>
+                <td th:text="${issue.getPostedBy().getAccount()}">DUMMY AUTHOR</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

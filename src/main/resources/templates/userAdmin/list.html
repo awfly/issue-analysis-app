@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>Users</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h1>Users</h1>
+    <table class="ui table" th:if="${users}">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Account</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Management</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}" th:object="${user}">
+                <td th:text="*{userId}"></td>
+                <td th:text="*{account}"></td>
+                <td th:text="*{firstName + ' ' + lastName}"></td>
+                <td th:text="*{email}"></td>
+                <td th:text="*{roles}"></td>
+                <td>
+                    <a>Edit</a>
+                    /
+                    <a th:href="@{'delete/' + ${user.userId}}" >Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="ui message" th:unless="${users}">
+        <div class="content">
+            <div class="header">
+                No users
+            </div>
+            <p>It's unexpected.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

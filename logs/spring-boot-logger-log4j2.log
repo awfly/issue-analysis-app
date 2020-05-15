@@ -1,0 +1,48 @@
+2020-05-16 00:22:43,175 INFO o.s.b.StartupInfoLogger [restartedMain] Starting Application on wsmsr-0351 with PID 27876 (C:\univer\issue-analysis-app\target\classes started by anmi0219 in C:\univer\issue-analysis-app)
+2020-05-16 00:22:43,185 DEBUG o.s.b.StartupInfoLogger [restartedMain] Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2020-05-16 00:22:43,186 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2020-05-16 00:22:43,706 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-16 00:22:43,707 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-16 00:22:44,581 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-05-16 00:22:44,698 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 110ms. Found 3 repository interfaces.
+2020-05-16 00:22:45,093 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [restartedMain] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$da5182bd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-16 00:22:45,628 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2020-05-16 00:22:45,643 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2020-05-16 00:22:45,653 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2020-05-16 00:22:45,654 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet Engine: Apache Tomcat/9.0.12
+2020-05-16 00:22:45,660 INFO o.a.j.l.DirectJDKLog [restartedMain] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_141\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\BS4SVN-v.1.91.1\ant\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\oracle\product\11.2.0\client_1\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\TortoiseSVN\bin;C:\Program Files\nodejs\;C:\Program Files\Java\jdk1.8.0_141\bin;C:\apache-maven-3.3.9\bin;C:\Program Files (x86)\Sennheiser\SoftphoneSDK\;C:\Gradle\gradle-6.0.1-all\gradle-6.0.1\bin;C:\Users\anmi0219\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\anmi0219\AppData\Local\Programs\Python\Python37\;C:\Users\anmi0219\AppData\Local\Microsoft\WindowsApps;C:\Users\anmi0219\AppData\Roaming\npm;C:\BS4SVN-v.1.91.1\ant\bin;C:\apache-maven-3.3.9\bin;C:\Users\anmi0219\AppData\Local\Programs\Fiddler;C:\Users\anmi0219\AppData\Local\Microsoft\WindowsApps;C:\Users\anmi0219\AppData\Local\Programs\Microsoft VS Code\bin;;.]
+2020-05-16 00:22:45,837 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2020-05-16 00:22:45,837 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 2130 ms
+2020-05-16 00:22:45,882 INFO o.s.b.w.s.AbstractFilterRegistrationBean [restartedMain] Mapping filter: 'characterEncodingFilter' to: [/*]
+2020-05-16 00:22:45,883 INFO o.s.b.w.s.AbstractFilterRegistrationBean [restartedMain] Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2020-05-16 00:22:45,883 INFO o.s.b.w.s.AbstractFilterRegistrationBean [restartedMain] Mapping filter: 'formContentFilter' to: [/*]
+2020-05-16 00:22:45,883 INFO o.s.b.w.s.AbstractFilterRegistrationBean [restartedMain] Mapping filter: 'requestContextFilter' to: [/*]
+2020-05-16 00:22:45,884 INFO o.s.b.w.s.AbstractFilterRegistrationBean [restartedMain] Mapping filter: 'springSecurityFilterChain' to: [/*]
+2020-05-16 00:22:45,884 INFO o.s.b.w.s.ServletRegistrationBean [restartedMain] Servlet dispatcherServlet mapped to [/]
+2020-05-16 00:22:46,017 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2020-05-16 00:22:46,165 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2020-05-16 00:22:46,222 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-05-16 00:22:46,349 INFO o.h.Version [restartedMain] HHH000412: Hibernate Core {5.3.7.Final}
+2020-05-16 00:22:46,351 INFO o.h.c.Environment [restartedMain] HHH000206: hibernate.properties not found
+2020-05-16 00:22:46,570 INFO o.h.a.c.r.j.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2020-05-16 00:22:46,800 INFO o.h.d.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL95Dialect
+2020-05-16 00:22:46,969 INFO o.h.e.j.e.i.LobCreatorBuilderImpl [restartedMain] HHH000421: Disabling contextual LOB creation as hibernate.jdbc.lob.non_contextual_creation is true
+2020-05-16 00:22:46,979 INFO o.h.t.BasicTypeRegistry [restartedMain] HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@1bd047e1
+2020-05-16 00:22:48,068 INFO o.h.t.s.i.SchemaCreatorImpl [restartedMain] HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@4250f9b7'
+2020-05-16 00:22:48,074 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-16 00:22:48,144 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2020-05-16 00:22:49,767 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-16 00:22:49,855 INFO o.s.b.a.w.s.WelcomePageHandlerMapping [restartedMain] Adding welcome page template: index
+2020-05-16 00:22:49,867 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Creating filter chain: org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@4431275d, []
+2020-05-16 00:22:49,911 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@535c6162, org.springframework.security.web.context.SecurityContextPersistenceFilter@240175e9, org.springframework.security.web.header.HeaderWriterFilter@2983bf89, org.springframework.security.web.csrf.CsrfFilter@1f9d51c5, org.springframework.security.web.authentication.logout.LogoutFilter@3ce1a58c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@73afbd1d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@547189b7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75ac84d9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@35ecbd02, org.springframework.security.web.session.SessionManagementFilter@688d5c92, org.springframework.security.web.access.ExceptionTranslationFilter@61d1add1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@37c6a0ca]
+2020-05-16 00:22:49,970 INFO o.s.s.c.ExecutorConfigurationSupport [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-16 00:22:50,387 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2020-05-16 00:22:50,389 INFO o.a.j.l.DirectJDKLog [restartedMain] Using a shared selector for servlet write/read
+2020-05-16 00:22:50,403 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2020-05-16 00:22:50,406 INFO o.s.b.StartupInfoLogger [restartedMain] Started Application in 8.25 seconds (JVM running for 11.066)
+2020-05-16 00:22:52,920 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-16 00:22:52,920 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2020-05-16 00:22:52,928 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 8 ms
+2020-05-16 00:23:02,136 INFO o.h.h.i.QueryTranslatorFactoryInitiator [http-nio-8080-exec-3] HHH000397: Using ASTQueryTranslatorFactory
