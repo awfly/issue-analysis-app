@@ -13,4 +13,9 @@ public interface UserService {
 
     User getByUserName(String userName);
 
+    void updateUsername(User currentUser, String account, String password);
+
+    void updateEmail(User currentUser, String password, String email);
+
+    void updatePassword(User currentUser, String oldPassword, String newPassword);
 }

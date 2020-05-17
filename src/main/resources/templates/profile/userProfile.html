@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/layout/layout}">
 <head>
@@ -33,61 +32,62 @@
     <br>
 
     <div class="container text-center" style="min-height: 75%">
-        <h5 th:text="'Текущее имя пользователя - ' + ${user.account}"></h5>
-        <form method="post" action="/user/profile/editUsername">
-            <div class="form-group row justify-content-center mt-4">
-                <label class="col-sm-2 col-form-label">Новое имя пользователя</label>
+        <h5 th:text="'Current username - ' + ${user.account}"></h5>
+        <form method="post" action="/users/user/editUsername">
+            <div class="form-group row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">New username</label>
                 <div class="col-sm-6">
-                    <input th:value="${user.account}" type="text" name="username" class="form-control"
-                           placeholder="Новое имя пользователя"
-                    />
+                    <input type="text" required="required" name="account" class="form-control"/>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <div class="form-group row justify-content-center mt-3">
+                <label class="col-sm-2 col-form-label">Confirm password</label>
+                <div class="col-sm-6">
+                    <input type="password" required="required" name="password" class="form-control"/>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
 
         <br>
         <br>
 
-        <h5 th:text="'Текущее email пользователя - ' + ${user.email}"></h5>
-        <form method="post" action="/user/profile/editEmail">
+        <h5 th:text="'Current user email - ' + ${user.email}"></h5>
+        <form method="post" action="/users/user/editEmail">
             <div class="form-group row justify-content-center mt-3">
-                <label class="col-sm-2 col-form-label">Новый email</label>
+                <label class="col-sm-2 col-form-label">New email</label>
                 <div class="col-sm-6">
                     <input type="email" required="required" name="email" class="form-control"
                            placeholder="example@example.com"/>
                 </div>
             </div>
             <div class="form-group row justify-content-center mt-3">
-                <label class="col-sm-2 col-form-label">Пароль</label>
+                <label class="col-sm-2 col-form-label">Confirm password</label>
                 <div class="col-sm-6">
-                    <input type="password" required="required" name="password" class="form-control"
-                           placeholder="Пароль"/>
+                    <input type="password" required="required" name="password" class="form-control"/>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
 
         <br>
         <br>
 
-        <h5>Изменение пароля</h5>
-        <form method="post" action="/user/profile/editPassword">
+        <h5>Change password</h5>
+        <form method="post" action="/users/user/editPassword">
             <div class="form-group row justify-content-center mt-3">
-                <label class="col-sm-2 col-form-label">Текущий пароль</label>
+                <label class="col-sm-2 col-form-label">Old password</label>
                 <div class="col-sm-6">
-                    <input type="password" required="required" name="currentPassword" class="form-control"
-                           placeholder="Текущий пароль"/>
+                    <input type="password" required="required" name="oldPassword" class="form-control"/>
                 </div>
             </div>
             <div class="form-group row justify-content-center mt-3">
-                <label class="col-sm-2 col-form-label">Новый пароль</label>
+                <label class="col-sm-2 col-form-label">New password</label>
                 <div class="col-sm-6 justify-content-center ">
-                    <input type="password" required="required" name="newPassword" class="form-control"
-                           placeholder="Новый пароль"/>
+                    <input type="password" required="required" name="newPassword" class="form-control"/>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 

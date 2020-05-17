@@ -52,6 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers(HttpMethod.POST, "/issues/").hasAuthority("writeIssue")
                 .mvcMatchers("/users").hasAuthority("manageUser")
                 .anyRequest().authenticated();
+
+        http.csrf().disable();
     }
 
     @Bean
