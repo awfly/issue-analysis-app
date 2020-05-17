@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title th:text="${project.name} + ' Project'"></title>
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h1 th:text="${project.name} + ' Project'"></h1>
+    <table class="ui table" th:if="${project}">
+        <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${project}">
+            <td th:text="*{projectId}">DUMMY ISSUE ID</td>
+            <td th:text="*{name}">DUMMY SUBJECT</td>
+            <td th:text="*{description}">DUMMY SUBJECT</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <h1 th:text="${project.name} + ' Scenarios'"></h1>
+        <br>
+        <div class="text-body left">
+            <a class="btn btn-secondary" data-toggle="collapse" href="#collapseExample"
+               role="button" aria-expanded="false"
+               aria-controls="collapseExample">Add Scenario <i class="fas fa-plus"></i></a>
+        </div>
+
+        <div class="collapse" id="collapseExample">
+            <div class="form-group mt-3">
+                <form method="post" th:action="@{/scenarios/new}">
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                               name="name" required="required" placeholder="Enter Scenario Name"/>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Enter Scenario Description"
+                                  name="description"></textarea>
+                    </div>
+                    <input type="hidden" name="projectId" th:value="${project.projectId}"/>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-secondary">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <br>
+
+        <div id="accordion" th:each="scenario : ${scenarios}" th:object="${scenario}">
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" th:text="${scenario.name}"
+                       th:href="'#collapse' + ${scenario.scenarioId}">
+                    </a>
+                    /
+                    <a class="text-right"
+                       th:href="'/scenarios/scenario/' + ${scenario.scenarioId}">
+                        Open Scenario
+                    </a>
+                </div>
+                <div th:id="'collapse' + ${scenario.scenarioId}" class="collapse" data-parent="#accordion">
+                    <div class="card-body" th:each="testcase : ${scenario.getTestcases()}" th:object="${testcase}">
+                        <a th:text="${testcase.name}" th:href="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

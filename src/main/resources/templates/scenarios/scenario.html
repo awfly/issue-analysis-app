@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>Scenario</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h1>Scenario</h1>
+    <table class="ui table" th:if="${scenario}">
+        <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${scenario}">
+            <td th:text="*{scenarioId}">DUMMY ISSUE ID</td>
+            <td th:text="*{name}">DUMMY SUBJECT</td>
+            <td th:text="*{description}">DUMMY SUBJECT</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <div class="container">
+        <h1 th:text="${scenario.name} + ' Testcases'"></h1>
+        <br>
+        <div class="text-body left">
+            <a class="btn btn-secondary" data-toggle="collapse" href="#collapseExample"
+               role="button" aria-expanded="false"
+               aria-controls="collapseExample">Add Testcase <i class="fas fa-plus"></i></a>
+        </div>
+
+        <div class="collapse" id="collapseExample">
+            <div class="form-group mt-3">
+                <form method="post" th:action="@{/testcases/new}">
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                               name="name" required="required" placeholder="Enter Testcase Name"/>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Enter Testcase Description"
+                                  name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                               name="expectedResult" required="required" placeholder="Enter Expected Result"/>
+                    </div>
+                    <input type="hidden" name="scenarioId" th:value="${scenario.scenarioId}"/>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-secondary">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <br>
+
+        <h1>Testcases</h1>
+        <table class="ui table" th:if="${scenario.testcases}">
+            <thead>
+            <tr>
+                <th>Identifier</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Expected Result</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="testcase : ${scenario.getTestcases()}" th:object="${testcase}">
+                <td th:text="*{testcaseId}">DUMMY ISSUE ID</td>
+                <td>
+                    <a th:text="*{name}" th:href="@{'/testcases/testcase/' + ${testcase.testcaseId}}" ></a>
+                </td>
+                <td th:text="*{description}">DUMMY SUBJECT</td>
+                <td th:text="*{expectedResult}">DUMMY SUBJECT</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

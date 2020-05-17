@@ -21,7 +21,7 @@
         <input type="button" value="Get stacktrace" onclick="getStackTrace()">
         <script>
             async function getStackTrace() {
-                return axios.get('/jira/stacktrace').then(response => {
+                return axios.get('/public/stacktrace').then(response => {
                     document.getElementById("stacktrace").value = response.data;
                 })
             }

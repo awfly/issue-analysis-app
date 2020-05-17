@@ -30,6 +30,11 @@
             Users
         </a>
 
+        <a th:href="@{/projects}" href="../project/projects.html" class="item"
+           sec:authorize="isAuthenticated()">
+            Projects
+        </a>
+
         <div class="right item">
             <a th:href="@{'/users/user/' + ${#authentication?.name}}"><h5 class="header item" sec:authorize="isAuthenticated()" sec:authentication="name"></h5></a>
             <form method="post" th:action="@{/logout}" sec:authorize="isAuthenticated()" action="../login/index.html" >

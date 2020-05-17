@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>Testcase</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h1>Testcase</h1>
+    <a class="ui button green" th:href="@{/issue/new}">Start</a>
+    <table class="ui table" th:if="${testcase}">
+        <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Expected Result</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${testcase}">
+            <td th:text="*{testcaseId}">DUMMY ISSUE ID</td>
+            <td th:text="*{name}">DUMMY SUBJECT</td>
+            <td th:text="*{description}">DUMMY SUBJECT</td>
+            <td th:text="*{expectedResult}">DUMMY SUBJECT</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
