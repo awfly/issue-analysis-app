@@ -18,10 +18,15 @@
             <input type="text" name="subject" placeholder="Subject"/>
         </div>
 
-        <input type="button" value="Get stacktrace" onclick="getStackTrace()">
+        <input type="button" value="Get stacktrace"  th:data1="${startDate}" th:onclick="javascript:getStackTrace(this.getAttribute('data1'));" >
         <script>
-            async function getStackTrace() {
-                return axios.get('/public/stacktrace').then(response => {
+            async function getStackTrace(startDate) {
+                return axios.get('/public/stacktrace', {
+                    params: {
+                        startDate : startDate
+                    }
+                })
+                    .then(response => {
                     document.getElementById("stacktrace").value = response.data;
                 })
             }

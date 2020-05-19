@@ -1,13 +1,17 @@
 package com.amgchv.controllers;
 
+import com.amgchv.models.Issue;
+import com.amgchv.models.Testcase;
+import com.amgchv.models.TestcaseProcess;
+import com.amgchv.security.UserPrincipal;
+import com.amgchv.services.IssueService;
+import com.amgchv.services.TestcaseProcessService;
+import com.amgchv.services.TestcaseService;
 import com.atlassian.jira.rest.client.api.IssueRestClient;
 import com.atlassian.jira.rest.client.api.JiraRestClient;
 import com.atlassian.jira.rest.client.api.domain.input.FieldInput;
 import com.atlassian.jira.rest.client.api.domain.input.IssueInput;
 import com.atlassian.jira.rest.client.api.domain.input.IssueInputBuilder;
-import com.amgchv.models.Issue;
-import com.amgchv.security.UserPrincipal;
-import com.amgchv.services.IssueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestOperations;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Controller
@@ -25,6 +31,8 @@ import java.util.List;
 public class IssueController {
 
     private final IssueService issueService;
+    private final TestcaseProcessService testcaseProcessService;
+    private final TestcaseService testcaseService;
     private final JiraRestClient jiraRestClient;
     private final RestOperations restOperations;
 
@@ -84,5 +92,14 @@ public class IssueController {
         Issue issue = issueService.getIssueById(id);
         model.addAttribute("issue", issue);
         return "issue/issue";
+    }
+
+    @GetMapping("/issue/new/{testcase}")
+    public String createReport(@PathVariable Testcase testcase, @AuthenticationPrincipal UserPrincipal userPrincipal,
+                               Model model) {
+        TestcaseProcess testcaseProcess = testcaseProcessService.getTestcaseProcessByUserAndTestcase(userPrincipal.getUser(), testcase);
+        LocalDateTime startDate = testcaseProcess.getStartDate();
+        model.addAttribute("startDate", startDate.truncatedTo(ChronoUnit.MINUTES).toString().replace('T', '_'));
+        return "issue/newJiraIssue";
     }
 }

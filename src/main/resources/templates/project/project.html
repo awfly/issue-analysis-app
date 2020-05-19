@@ -76,7 +76,7 @@
                 </div>
                 <div th:id="'collapse' + ${scenario.scenarioId}" class="collapse" data-parent="#accordion">
                     <div class="card-body" th:each="testcase : ${scenario.getTestcases()}" th:object="${testcase}">
-                        <a th:text="${testcase.name}">
+                        <a th:text="${testcase.name}" th:href="@{'/testcases/testcase/' + ${testcase.testcaseId}}">
                         </a>
                     </div>
                 </div>

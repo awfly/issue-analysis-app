@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/layout/layout}">
 <head>
@@ -11,8 +10,24 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1>Testcase</h1>
-    <a class="ui button green" th:href="@{/issue/new}">Start</a>
+    <h1 th:text="'Testcase - ' + ${testcase.name}">Testcase</h1>
+    <div class="container" th:switch="${inProgress}">
+        <div class="row">
+            <div class="col-sm-8">
+                <a class="ui button green" th:case="false"
+                   th:href="@{'/testcases/testcase/start/' + ${testcase.testcaseId}}">Start</a>
+                <span th:case="true">
+        <a class="ui button green"
+           th:href="@{'/testcases/testcase/passed/' + ${testcase.testcaseId}}">Testcase passed</a>
+        <a class="ui button red" th:href="@{'/issue/new/' + ${testcase.testcaseId}}">Testcase failed</a>
+        </span>
+            </div>
+            <div class="col-sm-4">
+                <a class="ui button blue" style="float: left" th:text="${inProgress} ? 'In progress' : 'Not started'">
+                </a>
+            </div>
+        </div>
+    </div>
     <table class="ui table" th:if="${testcase}">
         <thead>
         <tr>
@@ -31,7 +46,6 @@
         </tr>
         </tbody>
     </table>
-
 </div>
 </body>
 </html>

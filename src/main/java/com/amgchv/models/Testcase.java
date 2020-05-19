@@ -6,7 +6,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -27,8 +26,6 @@ public class Testcase {
 
     @NonNull
     private String expectedResult;
-
-    private LocalDateTime startTime;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "scenario_id")
