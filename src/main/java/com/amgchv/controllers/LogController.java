@@ -16,7 +16,6 @@ public class LogController {
 
     @GetMapping(value = "/stacktrace")
     public String getStacktrace(@RequestParam String startDate) {
-        String replacedDate  = startDate.replace('_', ' ');
-        return logService.getLogsStartedFrom(replacedDate);
+        return logService.getLogsStartedFrom(startDate);
     }
 }

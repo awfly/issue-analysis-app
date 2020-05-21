@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -37,9 +38,21 @@ public class ProjectController {
         return "/project/newProject";
     }
 
+    @GetMapping(value = "projects/delete")
+    public String deleteProject() {
+        return "/project/deleteProject";
+    }
+
     @PostMapping(value = "projects/new")
     public String createProject(Project project) {
         projectService.createProject(project);
         return "redirect:/projects";
     }
+
+    @PostMapping(value = "projects/delete")
+    public String deleteProjectProject(@RequestParam String projectName) {
+        projectService.deleteProjectByProjectName(projectName);
+        return "redirect:/projects";
+    }
+
 }

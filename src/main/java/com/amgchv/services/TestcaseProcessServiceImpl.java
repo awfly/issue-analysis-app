@@ -32,4 +32,9 @@ public class TestcaseProcessServiceImpl implements TestcaseProcessService {
     public TestcaseProcess getTestcaseProcessByUserAndTestcase(User user, Testcase testcase) {
         return testcaseProcessJpaRepository.findByUserAndTestcase(user, testcase);
     }
+
+    @Override
+    public void deleteById(Long testcaseProcessId) {
+        testcaseProcessJpaRepository.deleteById(testcaseProcessId);
+    }
 }

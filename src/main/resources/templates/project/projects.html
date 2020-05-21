@@ -19,6 +19,7 @@
         <thead>
         <tr>
             <th>Identifier</th>
+            <th>Jira Project Key</th>
             <th>Project Name</th>
             <th>Project Description</th>
         </tr>
@@ -26,6 +27,9 @@
         <tbody>
         <tr th:each="project : ${projects}" th:object="${project}">
             <td th:text="*{projectId}">DUMMY ISSUE ID</td>
+            <td>
+                <a th:text="*{jiraProjectKey}" th:href="@{'https://jira4cloud.atlassian.net/projects/' + ${project.jiraProjectKey}}" ></a>
+            </td>
             <td>
                 <a th:text="*{name}" th:href="@{'/projects/project/' + ${project.projectId}}" ></a>
             </td>

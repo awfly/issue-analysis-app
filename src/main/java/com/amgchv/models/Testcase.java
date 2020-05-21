@@ -25,6 +25,12 @@ public class Testcase {
     private String description;
 
     @NonNull
+    private String prerequisites;
+
+    @NonNull
+    private String testcaseSteps;
+
+    @NonNull
     private String expectedResult;
 
     @ManyToOne(cascade = CascadeType.ALL)

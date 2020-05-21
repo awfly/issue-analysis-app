@@ -12,6 +12,7 @@
     <br>
     <br>
     <h1>Issue</h1>
+    <a class="ui button" th:href="@{'/issue/sendToJira/' + ${issue.issueId}}">Send Issue To Jira</a>
     <table class="ui table" th:if="${issue}">
         <thead>
         <tr>

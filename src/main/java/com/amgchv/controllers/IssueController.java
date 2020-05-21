@@ -1,6 +1,7 @@
 package com.amgchv.controllers;
 
 import com.amgchv.models.Issue;
+import com.amgchv.models.Project;
 import com.amgchv.models.Testcase;
 import com.amgchv.models.TestcaseProcess;
 import com.amgchv.security.UserPrincipal;
@@ -70,6 +71,12 @@ public class IssueController {
         return "redirect:https://jira4cloud.atlassian.net/browse/" + issueId;
     }
 
+    @PostMapping("/issue/newJiraIssueInternal")
+    public String createJiraIssueInternal(Issue issue, @AuthenticationPrincipal UserPrincipal userPrincipal, @RequestParam String testcaseId) {
+        issueService.createIssue(issue, userPrincipal, testcaseId);
+        return "redirect:/issues/";
+    }
+
     @GetMapping("/issue/deleteJiraIssue")
     public String deleteJiraIssue() {
         return "issue/deleteJiraIssue";
@@ -94,12 +101,34 @@ public class IssueController {
         return "issue/issue";
     }
 
+    @GetMapping("/issue/sendToJira/{id}")
+    public String sendIssueToIssue(@PathVariable String id) {
+        Issue issue = issueService.getIssueById(id);
+        String projectKey = issue.getTestcase().getScenario().getProject().getJiraProjectKey();
+        IssueRestClient issueRestClient = jiraRestClient.getIssueClient();
+        IssueInput newIssue = new IssueInputBuilder()
+                .setProjectKey(projectKey)
+                .setSummary(issue.getSubject())
+                .setDescription(issue.getDescription())
+                .setIssueTypeId(10005L)
+                .setFieldInput(new FieldInput("customfield_10027", issue.getStacktrace()))
+                .build();
+
+        String issueId = issueRestClient.createIssue(newIssue).claim().getKey();
+        issueService.deleteIssueById(issue.getIssueId());
+        return "redirect:https://jira4cloud.atlassian.net/browse/" + issueId;
+    }
+
     @GetMapping("/issue/new/{testcase}")
     public String createReport(@PathVariable Testcase testcase, @AuthenticationPrincipal UserPrincipal userPrincipal,
                                Model model) {
         TestcaseProcess testcaseProcess = testcaseProcessService.getTestcaseProcessByUserAndTestcase(userPrincipal.getUser(), testcase);
+        Testcase tc = testcaseService.getTestcaseById(testcase.getTestcaseId());
         LocalDateTime startDate = testcaseProcess.getStartDate();
-        model.addAttribute("startDate", startDate.truncatedTo(ChronoUnit.MINUTES).toString().replace('T', '_'));
+        model.addAttribute("startDate", startDate.truncatedTo(ChronoUnit.SECONDS).toString());
+        model.addAttribute("endDate", LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).toString());
+        model.addAttribute("tc", tc);
+        testcaseProcessService.deleteById(testcaseProcess.getTestcaseProcessId());
         return "issue/newJiraIssue";
     }
 }

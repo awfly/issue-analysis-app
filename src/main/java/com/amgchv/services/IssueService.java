@@ -11,6 +11,9 @@ public interface IssueService {
 
     void createIssue(Issue issue, UserPrincipal account);
 
+    void createIssue(Issue issue, UserPrincipal account, String testcaseId);
+
     Issue getIssueById(String id);
 
+    void deleteIssueById(Long issueId);
 }

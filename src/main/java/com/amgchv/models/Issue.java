@@ -23,6 +23,19 @@ public class Issue {
     @Column(length = 2048)
     private String description;
 
+    private String expectedResult;
+
+    private String actualResult;
+
+    private String stepsToReproduce;
+
+    private String keywords;
+
+    private String stacktrace;
+
+    @OneToOne
+    private Testcase testcase;
+
     @ManyToOne
     private User postedBy;
 }

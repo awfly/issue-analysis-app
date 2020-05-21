@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,7 +22,14 @@ public class Project {
     private String name;
 
     @NonNull
+    private String jiraProjectKey;
+
+    @NonNull
     private String description;
+
+    @ElementCollection
+    @CollectionTable(name = "project_versions")
+    private List<String> versions;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
     private Set<Scenario> scenarios = new HashSet<>();

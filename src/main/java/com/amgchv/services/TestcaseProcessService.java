@@ -11,4 +11,6 @@ public interface TestcaseProcessService {
     void stopTestcase(User user, Testcase testcase);
 
     TestcaseProcess getTestcaseProcessByUserAndTestcase(User user, Testcase testcase);
+
+    void deleteById(Long testcaseProcessId);
 }

@@ -5,6 +5,7 @@ import com.amgchv.repositories.ProjectJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -26,5 +27,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void createProject(Project project) {
         projectJpaRepository.save(project);
+    }
+
+    @Override
+    @Transactional
+    public void deleteProjectByProjectName(String projectName) {
+        projectJpaRepository.deleteByName(projectName);
     }
 }
