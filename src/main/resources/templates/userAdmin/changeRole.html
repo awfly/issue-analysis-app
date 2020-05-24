@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>Change User Role</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h1 th:text="'Change role of user - ' + ${user.account}"></h1>
+    <br>
+    <h3 th:text="'Current role - ' + ${user.role.name}"></h3>
+
+    <div class="container" >
+        <form  method="post" class="mt-5">
+            <div class="form-group" th:each="role : ${roles}">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" th:id="${role.name}" name="role" class="custom-control-input" th:value="${role.roleId}" >
+                    <label class="custom-control-label" th:for="${role.name}" th:text="${role.name}"></label>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+    </div>
+</div>
+</body>
+
+
+
+
+
+
+</html>
+
+
+<!--<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
+<!--    <label class="btn btn-secondary active">-->
+<!--        <input type="radio" name="role"  autocomplete="off" checked> Active-->
+<!--    </label>-->
+<!--    <label class="btn btn-secondary">-->
+<!--        <input type="radio" name="options" autocomplete="off"> Radio-->
+<!--    </label>-->
+<!--    <label class="btn btn-secondary">-->
+<!--        <input type="radio" name="options"  autocomplete="off"> Radio-->
+<!--    </label>-->
+<!--</div>-->
+
+
+

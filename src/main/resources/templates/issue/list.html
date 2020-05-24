@@ -12,8 +12,6 @@
     <br>
     <br>
     <h1>Issues</h1>
-    <a class="ui button" th:href="@{/issue/new}">New Issue</a>
-    <a class="ui button" th:href="@{/issue/newJiraIssue}">New Jira Issue</a>
     <a class="ui button red" th:href="@{/issue/deleteJiraIssue}">Delete Jira Issue</a>
     <table class="ui table" th:if="${issues}">
         <thead>
@@ -21,6 +19,8 @@
                 <th>Identifier</th>
                 <th>Subject</th>
                 <th>Author</th>
+                <th>Sent to Jira</th>
+                <th>Similar tickets in Jira</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +30,8 @@
                     <a th:text="*{subject}" th:href="@{'issue/' + ${issue.issueId}}" ></a>
                 </td>
                 <td th:text="${issue.getPostedBy().getAccount()}">DUMMY AUTHOR</td>
+                <td th:text="${issue.passedToJira}">DUMMY AUTHOR</td>
+                <td th:text="${issue.getSimilarIssuesByException().size() + issue.getSimilarIssuesByKeywords().size()}">DUMMY AUTHOR</td>
             </tr>
         </tbody>
     </table>

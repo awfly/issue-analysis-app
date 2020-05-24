@@ -29,9 +29,9 @@
                 <td th:text="*{account}"></td>
                 <td th:text="*{firstName + ' ' + lastName}"></td>
                 <td th:text="*{email}"></td>
-                <td th:text="*{roles}"></td>
+                <td th:text="*{role}"></td>
                 <td>
-                    <a>Edit</a>
+                    <a th:href="@{'changeRole/' + ${user.userId}}" >Сhange role</a>
                     /
                     <a th:href="@{'delete/' + ${user.userId}}" >Delete</a>
                 </td>

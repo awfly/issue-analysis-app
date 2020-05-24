@@ -1,7 +1,9 @@
 package com.amgchv.services;
 
+import com.amgchv.models.Issue;
 import com.amgchv.models.Scenario;
 import com.amgchv.models.Testcase;
+import com.amgchv.repositories.IssueJpaRepository;
 import com.amgchv.repositories.ScenarioJpaRepository;
 import com.amgchv.repositories.TestcaseJpaRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ public class TestcaseServiceImpl implements TestcaseService {
 
     private final TestcaseJpaRepository testcaseJpaRepository;
     private final ScenarioJpaRepository scenarioJpaRepository;
+    private final IssueJpaRepository issueJpaRepository;
 
     @Override
     public void addTestcase(Testcase testcase, String scenarioId) {
@@ -25,6 +28,13 @@ public class TestcaseServiceImpl implements TestcaseService {
     public Testcase getTestcaseById(Long id) {
         Testcase testcase = testcaseJpaRepository.findById(id).get();
         return testcase;
+    }
+
+    @Override
+    public void deleteTestcaseById(Long testcaseId) {
+        Issue issue = issueJpaRepository.getByTestcaseTestcaseId(testcaseId);
+        issue.setTestcase(null);
+        testcaseJpaRepository.deleteById(testcaseId);
     }
 
 }

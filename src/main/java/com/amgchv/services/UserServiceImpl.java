@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         Role role = roleJpaRepository.findByName(roleName);
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        user.setRoles(new HashSet<>(Collections.singletonList(role)));
+        user.setRole(role);
         userJpaRepository.save(user);
     }
 
@@ -46,6 +46,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getByUserName(String userName) {
         return userJpaRepository.findByAccount(userName);
+    }
+
+    @Override
+    public User getById(Long id) {
+        return userJpaRepository.findById(id).get();
+    }
+
+    @Override
+    public void updateUserRole(User currentUser, String newRole) {
+        Role role = roleJpaRepository.findById(Long.valueOf(newRole)).get();
+        currentUser.setRole(role);
+        userJpaRepository.save(currentUser);
     }
 
     @Override

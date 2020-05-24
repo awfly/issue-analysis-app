@@ -3,6 +3,7 @@ package com.amgchv.controllers;
 import com.amgchv.models.Testcase;
 import com.amgchv.models.TestcaseProcess;
 import com.amgchv.models.User;
+import com.amgchv.redirect.RedirectHelper;
 import com.amgchv.security.UserPrincipal;
 import com.amgchv.services.TestcaseProcessService;
 import com.amgchv.services.TestcaseService;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -50,5 +53,12 @@ public class TestcaseController {
         User user = currentUser.getUser();
         testcaseProcessService.stopTestcase(user, testcase);
         return "redirect:/testcases/testcase/" + id;
+    }
+
+    @GetMapping(value = "testcases/testcase/delete/{id}")
+    public String testcaseDelete(@PathVariable String id,  RedirectAttributes redirectAttributes,
+                                 @RequestHeader(required = false) String referer) {
+        testcaseService.deleteTestcaseById(Long.valueOf(id));
+        return "redirect:" + RedirectHelper.getPreviousLocation(redirectAttributes, referer);
     }
 }

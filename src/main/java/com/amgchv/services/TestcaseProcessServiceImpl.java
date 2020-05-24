@@ -34,7 +34,7 @@ public class TestcaseProcessServiceImpl implements TestcaseProcessService {
     }
 
     @Override
-    public void deleteById(Long testcaseProcessId) {
+    public void stopTestcase(Long testcaseProcessId) {
         testcaseProcessJpaRepository.deleteById(testcaseProcessId);
     }
 }

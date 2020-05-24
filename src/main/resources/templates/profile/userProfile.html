@@ -16,14 +16,14 @@
         <tr>
             <th>Username</th>
             <th>Email</th>
-            <th>Roles</th>
+            <th>Role</th>
         </tr>
         </thead>
         <tbody>
         <tr th:object="${user}">
             <td th:text="*{account}">DUMMY SUBJECT</td>
             <td th:text="*{email}">DUMMY SUBJECT</td>
-            <td th:text="*{roles}">DUMMY SUBJECT</td>
+            <td th:text="*{role}">DUMMY SUBJECT</td>
         </tr>
         </tbody>
     </table>

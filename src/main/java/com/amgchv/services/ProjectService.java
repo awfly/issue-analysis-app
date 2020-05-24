@@ -13,4 +13,6 @@ public interface ProjectService {
     void createProject(Project project);
 
     void deleteProjectByProjectName(String projectName);
+
+    void synchronize();
 }

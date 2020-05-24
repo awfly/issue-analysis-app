@@ -7,4 +7,6 @@ public interface ScenarioService {
     void addScenario(Scenario scenario, String projectId);
 
     Scenario getScenarioById(Long id);
+
+    void deleteScenarioById(Long id);
 }

@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -33,8 +35,9 @@ public class Testcase {
     @NonNull
     private String expectedResult;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "scenario_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Scenario scenario;
 
     @Override

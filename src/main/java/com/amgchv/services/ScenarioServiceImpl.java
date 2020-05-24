@@ -25,4 +25,9 @@ public class ScenarioServiceImpl implements ScenarioService{
     public Scenario getScenarioById(Long id) {
         return scenarioJpaRepository.findById(id).get();
     }
+
+    @Override
+    public void deleteScenarioById(Long id) {
+        scenarioJpaRepository.deleteById(id);
+    }
 }

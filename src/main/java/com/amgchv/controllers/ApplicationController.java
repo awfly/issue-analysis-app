@@ -38,8 +38,8 @@ public class ApplicationController {
     }
 
     @PostMapping("/signup")
-    public String signup(User user, @RequestParam("password") String password, @RequestParam("role") String roleName, HttpServletRequest request) {
-        userService.register(user, roleName);
+    public String signup(User user, @RequestParam("password") String password, HttpServletRequest request) {
+        userService.register(user, "guest");
         authenticateUserAndSetSession(user, password, request);
         return "redirect:/";
     }

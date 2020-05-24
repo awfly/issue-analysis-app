@@ -1,9 +1,16 @@
 package com.amgchv.services;
 
 import com.amgchv.models.Project;
+import com.amgchv.models.jira.response.project.ProjectResponse;
 import com.amgchv.repositories.ProjectJpaRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestOperations;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -12,7 +19,9 @@ import java.util.List;
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
+    private final String GET_PROJECTS_ENDPOINT = "/rest/api/3/project?expand=description";
     private final ProjectJpaRepository projectJpaRepository;
+    private final RestOperations restOperations;
 
     @Override
     public List<Project> getAllProjects() {
@@ -33,5 +42,15 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional
     public void deleteProjectByProjectName(String projectName) {
         projectJpaRepository.deleteByName(projectName);
+    }
+
+    @SneakyThrows
+    @Override
+    public void synchronize() {
+        ProjectResponse[] responseJson = restOperations.getForObject(GET_PROJECTS_ENDPOINT, ProjectResponse[].class);
+        for (ProjectResponse response : responseJson) {
+            Project project = new Project(response.getName(), response.getKey(), response.getDescription());
+            projectJpaRepository.save(project);
+        }
     }
 }

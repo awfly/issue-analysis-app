@@ -12,9 +12,15 @@
     <br>
     <br>
     <h1>Projects</h1>
-    <a class="ui button" th:href="@{/projects/new}">New Project</a>
-    <a class="ui button red" th:href="@{/projects/delete}">Delete Project</a>
-
+    <div style="display: flex; justify-content: space-between;">
+    <div>
+        <a class="ui button" th:href="@{/projects/new}">New Project</a>
+        <a class="ui button red" th:href="@{/projects/delete}">Delete Project</a>
+    </div>
+    <div>
+        <a class="ui button green" th:href="@{/projects/synchronize}">Synchronize Projects with Jira</a>
+    </div>
+    </div>
     <table class="ui table" th:if="${projects}">
         <thead>
         <tr>

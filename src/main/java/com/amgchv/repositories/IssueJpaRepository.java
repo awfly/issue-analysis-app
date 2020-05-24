@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IssueJpaRepository extends JpaRepository<Issue, Long> {
+    Issue getByTestcaseTestcaseId(Long testcaseId);
 }

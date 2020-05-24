@@ -35,10 +35,6 @@ public class User {
     @NonNull
     private String password; // added for Spring Security
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "USER_ROLE",
-            joinColumns = {@JoinColumn(name = "USER_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID")}
-    )
-    private Set<Role> roles;
+    @OneToOne
+    private Role role;
 }

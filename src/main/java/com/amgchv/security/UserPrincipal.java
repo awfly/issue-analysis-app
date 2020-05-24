@@ -15,8 +15,7 @@ public class UserPrincipal implements UserDetails {
 
     public UserPrincipal(User user) {
         this.user = user;
-        String[] permissions = user.getRoles().stream()
-                .flatMap(role -> role.getPermissions().stream())
+        String[] permissions = user.getRole().getPermissions().stream()
                 .map(Permission::getName)
                 .toArray(String[]::new);
         this.authorities = AuthorityUtils.createAuthorityList(permissions);

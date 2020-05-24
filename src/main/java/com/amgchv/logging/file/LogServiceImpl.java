@@ -1,15 +1,24 @@
 package com.amgchv.logging.file;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
+@RequiredArgsConstructor
 public class LogServiceImpl implements LogService {
+
+    private static final String EXCEPTION_PATTERN_REGEXP = "([a-zA-Z.]*([a-zA-Z]Exception))";
 
     private static final String LOG_PATH = "logs/spring-boot-logger-log4j2.log";
 
@@ -40,6 +49,9 @@ public class LogServiceImpl implements LogService {
                     }
                 }
             }
+            if (startIndex == 0) {
+                startIndex = stringArray.length - 200;
+            }
             for (int i = startIndex; i < stringArray.length; i++) {
                 stringBuilder.append(stringArray[i]).append("\n");
             }
@@ -48,4 +60,17 @@ public class LogServiceImpl implements LogService {
         }
         return stringBuilder.toString();
     }
+
+    @Override
+    public List<String> getExceptionsFromLog(String log) {
+        List<String> exceptions = new ArrayList<>();
+        Matcher matcher = Pattern.compile(EXCEPTION_PATTERN_REGEXP).matcher(log);
+        while (matcher.find()) {
+            exceptions.add(matcher.group());
+        }
+        return exceptions.stream()
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
 }

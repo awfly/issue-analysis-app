@@ -16,4 +16,6 @@ public interface IssueService {
     Issue getIssueById(String id);
 
     void deleteIssueById(Long issueId);
+
+    void updateSentToJiraStatus(Long issueId, String jiraIssueId);
 }

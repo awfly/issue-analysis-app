@@ -1,7 +1,6 @@
 package com.amgchv.controllers;
 
 import com.amgchv.models.Issue;
-import com.amgchv.models.Project;
 import com.amgchv.models.Testcase;
 import com.amgchv.models.TestcaseProcess;
 import com.amgchv.security.UserPrincipal;
@@ -71,12 +70,6 @@ public class IssueController {
         return "redirect:https://jira4cloud.atlassian.net/browse/" + issueId;
     }
 
-    @PostMapping("/issue/newJiraIssueInternal")
-    public String createJiraIssueInternal(Issue issue, @AuthenticationPrincipal UserPrincipal userPrincipal, @RequestParam String testcaseId) {
-        issueService.createIssue(issue, userPrincipal, testcaseId);
-        return "redirect:/issues/";
-    }
-
     @GetMapping("/issue/deleteJiraIssue")
     public String deleteJiraIssue() {
         return "issue/deleteJiraIssue";
@@ -115,20 +108,26 @@ public class IssueController {
                 .build();
 
         String issueId = issueRestClient.createIssue(newIssue).claim().getKey();
-        issueService.deleteIssueById(issue.getIssueId());
+        issueService.updateSentToJiraStatus(issue.getIssueId(), issueId);
         return "redirect:https://jira4cloud.atlassian.net/browse/" + issueId;
     }
 
-    @GetMapping("/issue/new/{testcase}")
-    public String createReport(@PathVariable Testcase testcase, @AuthenticationPrincipal UserPrincipal userPrincipal,
+    @GetMapping("/issue/new/{testcaseId}")
+    public String createReport(@PathVariable Testcase testcaseId, @AuthenticationPrincipal UserPrincipal userPrincipal,
                                Model model) {
-        TestcaseProcess testcaseProcess = testcaseProcessService.getTestcaseProcessByUserAndTestcase(userPrincipal.getUser(), testcase);
-        Testcase tc = testcaseService.getTestcaseById(testcase.getTestcaseId());
+        TestcaseProcess testcaseProcess = testcaseProcessService.getTestcaseProcessByUserAndTestcase(userPrincipal.getUser(), testcaseId);
+        Testcase tc = testcaseService.getTestcaseById(testcaseId.getTestcaseId());
         LocalDateTime startDate = testcaseProcess.getStartDate();
         model.addAttribute("startDate", startDate.truncatedTo(ChronoUnit.SECONDS).toString());
         model.addAttribute("endDate", LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).toString());
         model.addAttribute("tc", tc);
-        testcaseProcessService.deleteById(testcaseProcess.getTestcaseProcessId());
+        testcaseProcessService.stopTestcase(testcaseProcess.getTestcaseProcessId());
         return "issue/newJiraIssue";
+    }
+
+    @PostMapping("/issue/newJiraIssueInternal")
+    public String createJiraIssueInternal(Issue issue, @AuthenticationPrincipal UserPrincipal userPrincipal, @RequestParam String testcaseId) {
+        issueService.createIssue(issue, userPrincipal, testcaseId);
+        return "redirect:/issues/";
     }
 }

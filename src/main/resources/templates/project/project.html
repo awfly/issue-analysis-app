@@ -64,20 +64,32 @@
 
         <div id="accordion" th:each="scenario : ${scenarios}" th:object="${scenario}">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="display: flex; justify-content: space-between;">
                     <a class="card-link" data-toggle="collapse" th:text="${scenario.name}"
                        th:href="'#collapse' + ${scenario.scenarioId}">
                     </a>
-                    /
+                    <div>
                     <a class="text-right"
                        th:href="'/scenarios/scenario/' + ${scenario.scenarioId}">
                         Open Scenario
                     </a>
+                        /
+                    <a class="text-right"
+                       th:href="'/scenarios/scenario/delete/' + ${scenario.scenarioId}">
+                        Delete Scenario
+                    </a>
+                    </div>
                 </div>
                 <div th:id="'collapse' + ${scenario.scenarioId}" class="collapse" data-parent="#accordion">
                     <div class="card-body" th:each="testcase : ${scenario.getTestcases()}" th:object="${testcase}">
+                        <div style="display: flex; justify-content: space-between;">
                         <a th:text="${testcase.name}" th:href="@{'/testcases/testcase/' + ${testcase.testcaseId}}">
                         </a>
+                            <a
+                               th:href="@{'/testcases/testcase/delete/' + ${testcase.testcaseId}}">
+                                Delete Testcase
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

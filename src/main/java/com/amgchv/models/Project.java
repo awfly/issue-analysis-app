@@ -31,7 +31,7 @@ public class Project {
     @CollectionTable(name = "project_versions")
     private List<String> versions;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "project")
     private Set<Scenario> scenarios = new HashSet<>();
 
     @Override

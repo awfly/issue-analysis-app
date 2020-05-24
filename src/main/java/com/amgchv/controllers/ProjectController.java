@@ -18,7 +18,7 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-    @GetMapping(value = "projects")
+    @GetMapping(value = "/projects/")
     public String projects(Model model) {
         List<Project> allProjects = projectService.getAllProjects();
         model.addAttribute("projects", allProjects);
@@ -46,13 +46,18 @@ public class ProjectController {
     @PostMapping(value = "projects/new")
     public String createProject(Project project) {
         projectService.createProject(project);
-        return "redirect:/projects";
+        return "redirect:/projects/";
     }
 
     @PostMapping(value = "projects/delete")
     public String deleteProjectProject(@RequestParam String projectName) {
         projectService.deleteProjectByProjectName(projectName);
-        return "redirect:/projects";
+        return "redirect:/projects/";
     }
 
+    @GetMapping(value = "projects/synchronize")
+    public String synchronizeProjects() {
+        projectService.synchronize();
+        return "redirect:/projects/";
+    }
 }

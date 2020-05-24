@@ -14,7 +14,7 @@
 <body>
 <div class="ui fixed inverted menu">
     <div class="ui container">
-        <a href="#" class="header item">
+        <a th:href="@{/}" class="header item">
             Issue Analysis Support App
         </a>
         <a th:href="@{/}" href="../index.html" class="item"
@@ -30,7 +30,7 @@
             Users
         </a>
 
-        <a th:href="@{/projects}" href="../project/projects.html" class="item"
+        <a th:href="@{/projects/}" href="../project/projects.html" class="item"
            sec:authorize="isAuthenticated()">
             Projects
         </a>
