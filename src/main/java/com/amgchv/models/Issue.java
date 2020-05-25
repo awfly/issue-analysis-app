@@ -33,6 +33,8 @@ public class Issue {
 
     private String actualResult;
 
+    private String prerequisites;
+
     private String stepsToReproduce;
 
     private String keywords;

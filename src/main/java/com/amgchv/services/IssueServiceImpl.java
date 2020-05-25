@@ -7,6 +7,7 @@ import com.amgchv.models.User;
 import com.amgchv.repositories.IssueJpaRepository;
 import com.amgchv.repositories.UserJpaRepository;
 import com.amgchv.security.UserPrincipal;
+import com.amgchv.ticket.description.TicketDescriptionGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,8 @@ public class IssueServiceImpl implements IssueService {
         List<String> similarIssueByKeywords = findJiraIssueService.getIssuesFromJiraByKeywords(issue.getKeywordsAsList(), projectId);
         issue.setSimilarIssuesByException(similarIssueByExceptions);
         issue.setSimilarIssuesByKeywords(similarIssueByKeywords);
+        String changedDescription = TicketDescriptionGenerator.addAdditionalField(issue.getDescription(), issue);
+        issue.setDescription(changedDescription);
         issueJpaRepository.save(issue);
     }
 

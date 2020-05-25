@@ -7,6 +7,7 @@ import com.amgchv.security.UserPrincipal;
 import com.amgchv.services.IssueService;
 import com.amgchv.services.TestcaseProcessService;
 import com.amgchv.services.TestcaseService;
+import com.amgchv.ticket.description.TicketDescriptionGenerator;
 import com.atlassian.jira.rest.client.api.IssueRestClient;
 import com.atlassian.jira.rest.client.api.JiraRestClient;
 import com.atlassian.jira.rest.client.api.domain.input.FieldInput;
@@ -118,9 +119,12 @@ public class IssueController {
         TestcaseProcess testcaseProcess = testcaseProcessService.getTestcaseProcessByUserAndTestcase(userPrincipal.getUser(), testcaseId);
         Testcase tc = testcaseService.getTestcaseById(testcaseId.getTestcaseId());
         LocalDateTime startDate = testcaseProcess.getStartDate();
+        LocalDateTime endDate = LocalDateTime.now();
         model.addAttribute("startDate", startDate.truncatedTo(ChronoUnit.SECONDS).toString());
-        model.addAttribute("endDate", LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).toString());
+        model.addAttribute("endDate", endDate.truncatedTo(ChronoUnit.SECONDS).toString());
         model.addAttribute("tc", tc);
+        String ticketDescription = TicketDescriptionGenerator.generateDescriptionFromTestcase(tc, userPrincipal.getUser(), startDate, endDate);
+        model.addAttribute("ticketDescription", ticketDescription);
         testcaseProcessService.stopTestcase(testcaseProcess.getTestcaseProcessId());
         return "issue/newJiraIssue";
     }

@@ -18,7 +18,11 @@
         </div>
         <div class="field">
             <label>Description</label>
-            <textarea name="description"></textarea>
+            <textarea th:text="${ticketDescription}" name="description"></textarea>
+        </div>
+        <div class="field">
+            <label>Prerequisites</label>
+            <textarea th:text="${tc.prerequisites}" name="prerequisites"></textarea>
         </div>
         <div class="field">
             <label>Steps to reproduce</label>
@@ -26,13 +30,12 @@
         </div>
         <div class="field">
             <label>Expected result</label>
-            <input th:value="${tc.expectedResult}" disabled type="text" name="expectedResult" placeholder="Expected result"/>
+            <input th:value="${tc.expectedResult}" readonly="readonly" type="text" name="expectedResult" placeholder="Expected result"/>
         </div>
         <div class="field">
             <label>Actual result</label>
             <input type="text" name="actualResult" placeholder="Actual result"/>
         </div>
-
         <span>
             <div class="field">
             <label>Started on</label>

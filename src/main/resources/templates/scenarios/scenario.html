@@ -15,14 +15,12 @@
     <table class="ui table" th:if="${scenario}">
         <thead>
         <tr>
-            <th>Identifier</th>
             <th>Name</th>
             <th>Description</th>
         </tr>
         </thead>
         <tbody>
         <tr th:object="${scenario}">
-            <td th:text="*{scenarioId}">DUMMY ISSUE ID</td>
             <td th:text="*{name}">DUMMY SUBJECT</td>
             <td th:text="*{description}">DUMMY SUBJECT</td>
         </tr>
@@ -76,7 +74,6 @@
         <table class="ui table" th:if="${scenario.testcases}">
             <thead>
             <tr>
-                <th>Identifier</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Expected Result</th>
@@ -84,7 +81,6 @@
             </thead>
             <tbody>
             <tr th:each="testcase : ${scenario.getTestcases()}" th:object="${testcase}">
-                <td th:text="*{testcaseId}">DUMMY ISSUE ID</td>
                 <td>
                     <a th:text="*{name}" th:href="@{'/testcases/testcase/' + ${testcase.testcaseId}}" ></a>
                 </td>

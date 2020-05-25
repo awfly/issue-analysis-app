@@ -11,20 +11,20 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1>Projects</h1>
+    <h1 style="display: flex; justify-content: center;">Projects</h1>
+    <br>
     <div style="display: flex; justify-content: space-between;">
-    <div>
-        <a class="ui button" th:href="@{/projects/new}">New Project</a>
-        <a class="ui button red" th:href="@{/projects/delete}">Delete Project</a>
-    </div>
-    <div>
-        <a class="ui button green" th:href="@{/projects/synchronize}">Synchronize Projects with Jira</a>
-    </div>
+        <div>
+            <a class="ui button" th:href="@{/projects/new}">New Project</a>
+            <a class="ui button red" th:href="@{/projects/delete}">Delete Project</a>
+        </div>
+        <div>
+            <a class="ui button green" th:href="@{/projects/synchronize}">Synchronize Projects with Jira</a>
+        </div>
     </div>
     <table class="ui table" th:if="${projects}">
-        <thead>
+        <thead class="thead-dark">
         <tr>
-            <th>Identifier</th>
             <th>Jira Project Key</th>
             <th>Project Name</th>
             <th>Project Description</th>
@@ -32,7 +32,6 @@
         </thead>
         <tbody>
         <tr th:each="project : ${projects}" th:object="${project}">
-            <td th:text="*{projectId}">DUMMY ISSUE ID</td>
             <td>
                 <a th:text="*{jiraProjectKey}" th:href="@{'https://jira4cloud.atlassian.net/projects/' + ${project.jiraProjectKey}}" ></a>
             </td>

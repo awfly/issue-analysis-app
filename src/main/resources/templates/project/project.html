@@ -14,14 +14,12 @@
     <table class="ui table" th:if="${project}">
         <thead>
         <tr>
-            <th>Identifier</th>
             <th>Name</th>
             <th>Description</th>
         </tr>
         </thead>
         <tbody>
         <tr th:object="${project}">
-            <td th:text="*{projectId}">DUMMY ISSUE ID</td>
             <td th:text="*{name}">DUMMY SUBJECT</td>
             <td th:text="*{description}">DUMMY SUBJECT</td>
         </tr>

@@ -10,11 +10,13 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1 th:text="'Profile of user - ' + ${user.account}"></h1>
+    <h1 style="display: flex; justify-content: center" th:text="'Profile of user - ' + ${user.account}"></h1>
+    <br>
     <table class="ui table" th:if="${user}">
         <thead>
         <tr>
             <th>Username</th>
+            <th>Full Name</th>
             <th>Email</th>
             <th>Role</th>
         </tr>
@@ -22,6 +24,7 @@
         <tbody>
         <tr th:object="${user}">
             <td th:text="*{account}">DUMMY SUBJECT</td>
+            <td th:text="${user.firstName} + ' ' + ${user.firstName}">DUMMY SUBJECT</td>
             <td th:text="*{email}">DUMMY SUBJECT</td>
             <td th:text="*{role}">DUMMY SUBJECT</td>
         </tr>

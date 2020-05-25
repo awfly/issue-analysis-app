@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/layout/layout}">
 <head>
@@ -11,26 +10,72 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1>Issue</h1>
-    <a class="ui button" th:href="@{'/issue/sendToJira/' + ${issue.issueId}}">Send Issue To Jira</a>
-    <table class="ui table" th:if="${issue}">
-        <thead>
-        <tr>
-            <th>Identifier</th>
-            <th>Subject</th>
-            <th>Description</th>
-            <th>Author</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:object="${issue}">
-            <td th:text="*{issueId}">DUMMY ISSUE ID</td>
-            <td th:text="*{subject}">DUMMY SUBJECT</td>
-            <td th:text="*{description}">DUMMY SUBJECT</td>
-            <td th:text="${issue.getPostedBy().getAccount()}">DUMMY AUTHOR</td>
-        </tr>
-        </tbody>
-    </table>
+    <h1 style="display: flex; justify-content: center" th:text="'Issue: ' + ${issue.subject}"></h1>
+    <br>
+    <a  type="button" class="btn btn-primary btn-lg btn-block" th:if="${issue.jiraIssueId}" th:data1="${issue.jiraIssueId}"
+        th:href="'https://jira4cloud.atlassian.net/browse/' + ${issue.jiraIssueId}"
+    th:text="'Jira Issue Link: ' + ${issue.jiraIssueId}"></a>
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+        <table class="ui table" th:if="${issue}">
+            <thead>
+            <tr>
+                <th>Subject</th>
+                <th style="display:flex; justify-content: center">Description</th>
+                <th>Author</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:object="${issue}">
+                <td th:text="*{subject}">DUMMY SUBJECT</td>
+                <td style="white-space: pre-line; display: flex; justify-content: center" th:text="*{description}">DUMMY SUBJECT</td>
+                <td th:text="${issue.getPostedBy().getAccount()}">DUMMY AUTHOR</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <div class="container" style=" margin-top: 20px;">
+        <div class="row">
+            <a class="ui button" th:if="${!issue.passedToJira}" th:href="@{'/issue/sendToJira/' + ${issue.issueId}}">Send Issue To Jira</a>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 20px;">
+        <div class="row" >
+            <div class="card" style="width: 50%" th:if="${!issue.getSimilarIssuesByKeywords().isEmpty()}">
+                <div class="card-header">
+                    Similar tickets from jira by keywords
+                </div>
+                <ul class="list-group list-group-flush" th:each="jiraIssue : ${issue.getSimilarIssuesByKeywords()}">
+                    <a th:href="'https://jira4cloud.atlassian.net/browse/' + ${jiraIssue.split(':')[0].trim()}"><li class="list-group-item" th:text="${jiraIssue}">
+                    </li>
+                    </a>
+                </ul>
+            </div>
+            <div class="card" style="width: 50%" th:if="${!issue.getSimilarIssuesByException().isEmpty()}">
+                <div class="card-header">
+                    Similar tickets from jira by exceptions
+                </div>
+                <ul class="list-group list-group-flush" th:each="jiraIssue : ${issue.getSimilarIssuesByException()}">
+                   <a th:href="'https://jira4cloud.atlassian.net/browse/' + ${jiraIssue.split(':')[0].trim()}"> <li class="list-group-item" th:text="${jiraIssue}"></li>
+                   </a>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
+
+<!--<div class="card">-->
+<!--    <div class="card-header">-->
+<!--        Featured-->
+<!--    </div>-->
+<!--    <ul class="list-group list-group-flush">-->
+<!--        <li class="list-group-item">Cras justo odio</li>-->
+<!--        <li class="list-group-item">Dapibus ac facilisis in</li>-->
+<!--        <li class="list-group-item">Vestibulum at eros</li>-->
+<!--    </ul>-->
+<!--</div>-->
