@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
+      layout:decorate="~{layout/layout}">
 <head>
     <title>Change User Role</title>
 </head>
@@ -11,9 +11,9 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1 th:text="'Change role of user - ' + ${user.account}"></h1>
+    <h1 th:text="'Изменить роль для пользователя - ' + ${user.account}"></h1>
     <br>
-    <h3 th:text="'Current role - ' + ${user.role.name}"></h3>
+    <h3 th:text="'Текущая роль - ' + ${user.role.name}"></h3>
 
     <div class="container" >
         <form  method="post" class="mt-5">
@@ -23,7 +23,7 @@
                     <label class="custom-control-label" th:for="${role.name}" th:text="${role.name}"></label>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-primary" type="submit">Сохранить</button>
         </form>
     </div>
 </div>

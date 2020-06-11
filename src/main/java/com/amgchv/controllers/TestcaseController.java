@@ -36,7 +36,7 @@ public class TestcaseController {
         boolean inProgress = testcaseProcessService.getTestcaseProcessByUserAndTestcase(userPrincipal.getUser(), testcase) != null;
         model.addAttribute("testcase", testcase);
         model.addAttribute("inProgress", inProgress);
-        return "/testcase/testcase";
+        return "testcase/testcase";
     }
 
     @GetMapping(value = "testcases/testcase/start/{id}")

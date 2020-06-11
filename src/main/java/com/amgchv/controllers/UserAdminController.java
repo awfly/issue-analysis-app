@@ -4,7 +4,6 @@ import com.amgchv.models.Role;
 import com.amgchv.models.User;
 import com.amgchv.services.RoleService;
 import com.amgchv.services.UserService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,6 +55,12 @@ public class UserAdminController {
         User user = userService.getById(Long.valueOf(id));
         userService.updateUserRole(user, role);
         return "redirect:/users/";
+    }
+
+
+    @GetMapping("/settings/")
+    public String settings() {
+        return "settings/settings";
     }
 
 }

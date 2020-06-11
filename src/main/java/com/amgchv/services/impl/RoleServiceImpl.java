@@ -1,7 +1,8 @@
-package com.amgchv.services;
+package com.amgchv.services.impl;
 
 import com.amgchv.models.Role;
 import com.amgchv.repositories.RoleJpaRepository;
+import com.amgchv.services.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

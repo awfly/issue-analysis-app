@@ -1,4 +1,4 @@
-package com.amgchv.services;
+package com.amgchv.services.impl;
 
 import com.amgchv.logging.file.LogService;
 import com.amgchv.models.Issue;
@@ -7,6 +7,9 @@ import com.amgchv.models.User;
 import com.amgchv.repositories.IssueJpaRepository;
 import com.amgchv.repositories.UserJpaRepository;
 import com.amgchv.security.UserPrincipal;
+import com.amgchv.services.FindJiraIssueService;
+import com.amgchv.services.IssueService;
+import com.amgchv.services.TestcaseService;
 import com.amgchv.ticket.description.TicketDescriptionGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;

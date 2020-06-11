@@ -1,8 +1,9 @@
-package com.amgchv.services;
+package com.amgchv.services.impl;
 
 import com.amgchv.models.Project;
 import com.amgchv.models.jira.response.project.ProjectResponse;
 import com.amgchv.repositories.ProjectJpaRepository;
+import com.amgchv.services.ProjectService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +50,7 @@ public class ProjectServiceImpl implements ProjectService {
     public void synchronize() {
         ProjectResponse[] responseJson = restOperations.getForObject(GET_PROJECTS_ENDPOINT, ProjectResponse[].class);
         for (ProjectResponse response : responseJson) {
+            if (projectJpaRepository.getByJiraProjectKey(response.getKey()) != null) continue;
             Project project = new Project(response.getName(), response.getKey(), response.getDescription());
             projectJpaRepository.save(project);
         }

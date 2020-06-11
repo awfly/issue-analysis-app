@@ -76,6 +76,13 @@ public class IssueController {
         return "issue/deleteJiraIssue";
     }
 
+
+    @GetMapping("/issue/deleteInternal/{id}")
+    public String deleteInternalIssue(@PathVariable String id) {
+        issueService.deleteIssueById(Long.valueOf(id));
+        return "redirect:/issues/";
+    }
+
     @PostMapping(value = "/issue/deleteJiraIssue")
     public String deleteIssue(@RequestParam String key) {
         restOperations.delete("/rest/api/3/issue/" + key);

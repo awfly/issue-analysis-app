@@ -1,10 +1,11 @@
-package com.amgchv.services;
+package com.amgchv.services.impl;
 
 import com.amgchv.models.Testcase;
 import com.amgchv.models.TestcaseProcess;
 import com.amgchv.models.User;
 import com.amgchv.repositories.TestcaseProcessJpaRepository;
 
+import com.amgchv.services.TestcaseProcessService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

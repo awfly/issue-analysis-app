@@ -18,11 +18,11 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
-    @GetMapping(value = "/projects/")
+    @GetMapping(value = "projects")
     public String projects(Model model) {
         List<Project> allProjects = projectService.getAllProjects();
         model.addAttribute("projects", allProjects);
-        return "/project/projects";
+        return "project/projects";
     }
 
     @GetMapping(value = "projects/project/{id}")
@@ -30,17 +30,17 @@ public class ProjectController {
         Project project = projectService.getProjectById(Long.valueOf(id));
         model.addAttribute("project", project);
         model.addAttribute("scenarios", project.getScenarios());
-        return "/project/project";
+        return "project/project";
     }
 
     @GetMapping(value = "projects/new")
     public String newProject() {
-        return "/project/newProject";
+        return "project/newProject";
     }
 
     @GetMapping(value = "projects/delete")
     public String deleteProject() {
-        return "/project/deleteProject";
+        return "project/deleteProject";
     }
 
     @PostMapping(value = "projects/new")

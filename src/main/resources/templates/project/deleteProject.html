@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
+      layout:decorate="~{layout/layout}">
 <head>
     <title>Delete project</title>
 </head>
@@ -11,13 +11,13 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1>Delete project</h1>
+    <h1 style="display:flex; justify-content: center">Удалить проект</h1>
     <form class="ui large form" method="post" th:action="@{/projects/delete}">
         <div class="field">
-            <label>Project Name</label>
-            <input type="text" name="projectName" placeholder="Project Name"/>
+            <label>Название проекта</label>
+            <input type="text" name="projectName" placeholder="Название проекта"/>
         </div>
-        <button type="submit" class="ui primary button">delete</button>
+        <button type="submit" class="ui primary button">Удалить</button>
     </form>
 </div>
 </body>

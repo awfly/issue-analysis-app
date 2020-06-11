@@ -1,8 +1,8 @@
-package com.amgchv.services;
+package com.amgchv.services.impl;
 
 import com.amgchv.models.jira.response.search.jql.IssueJqlSearchResponse;
 import com.amgchv.models.jira.response.search.picker.SearchResponse;
-import com.atlassian.jira.rest.client.api.JiraRestClient;
+import com.amgchv.services.FindJiraIssueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestOperations;
@@ -33,11 +33,13 @@ public class FindJiraIssueServiceImpl implements FindJiraIssueService {
         List<String> issuesFromJiraByKeywords = new ArrayList<>();
 
         for (String keyword : searchElements) {
-            SearchResponse searchResponse = restOperations.getForObject(SEARCH_ISSUE_ENDPOINT, SearchResponse.class, keyword, projectId);
+            SearchResponse searchResponse = restOperations.getForObject(SEARCH_ISSUE_ENDPOINT,
+                    SearchResponse.class, keyword, projectId);
             if (searchResponse != null) {
                 searchResponse.getSections()
-                        .forEach(section -> section.getIssues().stream().map(jiraIssue -> jiraIssue.getKey() + " : (" + jiraIssue.getSummaryText() +")")
-                                                                        .forEach(issuesFromJiraByKeywords::add));
+                        .forEach(section -> section.getIssues().stream().map(jiraIssue ->
+                                jiraIssue.getKey() + " : (" + jiraIssue.getSummaryText() + ")")
+                                .forEach(issuesFromJiraByKeywords::add));
             }
         }
 
@@ -49,9 +51,12 @@ public class FindJiraIssueServiceImpl implements FindJiraIssueService {
         List<String> issuesFromJiraByKeywords = new ArrayList<>();
 
         for (String element : searchElements) {
-            IssueJqlSearchResponse searchResponse = restOperations.getForObject(SEARCH_BY_JQL_ISSUE_ENDPOINT, IssueJqlSearchResponse.class, element, projectId);
+            IssueJqlSearchResponse searchResponse = restOperations.getForObject(SEARCH_BY_JQL_ISSUE_ENDPOINT,
+                    IssueJqlSearchResponse.class, element, projectId);
             if (searchResponse != null) {
-                searchResponse.getIssues().stream().map(issue -> issue.getKey() + " : (" + issue.getFields().getSummary() +")").forEach(issuesFromJiraByKeywords::add);
+                searchResponse.getIssues().stream().map(issue ->
+                        issue.getKey() + " : (" + issue.getFields().getSummary() + ")")
+                        .forEach(issuesFromJiraByKeywords::add);
             }
         }
 

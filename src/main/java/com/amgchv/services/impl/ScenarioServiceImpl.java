@@ -1,15 +1,16 @@
-package com.amgchv.services;
+package com.amgchv.services.impl;
 
 import com.amgchv.models.Project;
 import com.amgchv.models.Scenario;
 import com.amgchv.repositories.ProjectJpaRepository;
 import com.amgchv.repositories.ScenarioJpaRepository;
+import com.amgchv.services.ScenarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ScenarioServiceImpl implements ScenarioService{
+public class ScenarioServiceImpl implements ScenarioService {
 
     private final ScenarioJpaRepository scenarioJpaRepository;
     private final ProjectJpaRepository projectJpaRepository;

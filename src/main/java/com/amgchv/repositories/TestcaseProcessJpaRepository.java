@@ -10,3 +10,10 @@ import org.springframework.stereotype.Repository;
 public interface TestcaseProcessJpaRepository extends JpaRepository<TestcaseProcess, Long> {
     TestcaseProcess findByUserAndTestcase(User user, Testcase testcase);
 }
+
+
+
+
+
+
+

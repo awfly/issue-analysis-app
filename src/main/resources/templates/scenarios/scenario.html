@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
+      layout:decorate="~{layout/layout}">
 <head>
     <title>Scenario</title>
 </head>
@@ -11,12 +11,12 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1>Scenario</h1>
+    <h1 style="display: flex; justify-content: center" th:text="'Сценарий ' + ${scenario.name}"></h1>
     <table class="ui table" th:if="${scenario}">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Название</th>
+            <th>Описание</th>
         </tr>
         </thead>
         <tbody>
@@ -29,12 +29,13 @@
 
 
     <div class="container">
-        <h1 th:text="${scenario.name} + ' Testcases'"></h1>
+        <br>
+        <h1 style="display: flex; justify-content: center">Тесткейсы</h1>
         <br>
         <div class="text-body left">
             <a class="btn btn-secondary" data-toggle="collapse" href="#collapseExample"
                role="button" aria-expanded="false"
-               aria-controls="collapseExample">Add Testcase <i class="fas fa-plus"></i></a>
+               aria-controls="collapseExample">Добавить тесткейс <i style="margin-left: 5px;" class="fas fa-plus"></i></a>
         </div>
 
         <div class="collapse" id="collapseExample">
@@ -42,27 +43,27 @@
                 <form method="post" th:action="@{/testcases/new}">
                     <div class="form-group">
                         <input type="text" class="form-control"
-                               name="name" required="required" placeholder="Enter Testcase Name"/>
+                               name="name" required="required" placeholder="Введите имя тесткейса"/>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Enter Testcase Description"
+                        <textarea class="form-control" placeholder="Введите описание тесткейса"
                                   name="description"></textarea>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Enter Prerequisites"
+                        <textarea class="form-control" placeholder="Введите пререквезиты"
                                   name="prerequisites"></textarea>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Enter Testcase Steps"
+                        <textarea class="form-control" placeholder="Введите шаги тестового сценария"
                                   name="testcaseSteps"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control"
-                               name="expectedResult" required="required" placeholder="Enter Expected Result"/>
+                               name="expectedResult" required="required" placeholder="Введите ожидаемый результат"/>
                     </div>
                     <input type="hidden" name="scenarioId" th:value="${scenario.scenarioId}"/>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-secondary">Add</button>
+                        <button type="submit" class="btn btn-secondary">Добавить</button>
                     </div>
                 </form>
             </div>
@@ -70,13 +71,13 @@
 
         <br>
 
-        <h1>Testcases</h1>
+        <h1>Список</h1>
         <table class="ui table" th:if="${scenario.testcases}">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Expected Result</th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Ожидаемый результат</th>
             </tr>
             </thead>
             <tbody>

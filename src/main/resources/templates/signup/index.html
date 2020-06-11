@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
+      layout:decorate="~{layout/layout}">
 <head>
     <title>Signup</title>
 </head>
@@ -24,7 +24,7 @@
         <div class="column">
             <h2 class="ui teal header">
                 <div class="content">
-                    Signup
+                    Создание аккаунта
                 </div>
             </h2>
             <form class="ui large form" method="post" th:action="@{/signup}">
@@ -32,25 +32,25 @@
                     <div class="field">
                         <div class="ui left icon input">
                             <i class="user icon"></i>
-                            <input type="text" name="account" placeholder="Account">
+                            <input type="text" name="account" placeholder="Имя пользователя">
                         </div>
                     </div>
                     <div class="two fields">
                         <div class="field">
                             <div class="ui left input">
-                                <input type="text" name="firstName" placeholder="First name">
+                                <input type="text" name="firstName" placeholder="Имя">
                             </div>
                         </div>
                         <div class="field">
                             <div class="ui left input">
-                                <input type="text" name="lastName" placeholder="Last name">
+                                <input type="text" name="lastName" placeholder="Фамилия">
                             </div>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui left icon input">
                             <i class="lock icon"></i>
-                            <input type="password" name="password" placeholder="Password">
+                            <input type="password" name="password" placeholder="Пароль">
                         </div>
                     </div>
 
@@ -71,13 +71,14 @@
 <!--                            </select>-->
 <!--                        </div>-->
 <!--                    </div>-->
-                    <button type="submit" class="ui fluid large teal submit button">Signup</button>
+                    <button type="submit" class="ui fluid large teal submit button">Регистрация</button>
                 </div>
 
                 <div class="ui error message"></div>
 
                 <div class="ui message">
-                    <a th:href="@{/login}">Log in</a>
+                    Уже есть аккаут?
+                    <a th:href="@{/login}">Войти</a>
                 </div>
 
             </form>

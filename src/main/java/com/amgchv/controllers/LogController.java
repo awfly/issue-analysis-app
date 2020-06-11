@@ -19,3 +19,11 @@ public class LogController {
         return logService.getLogsStartedFrom(startDate);
     }
 }
+
+
+
+
+
+
+
+

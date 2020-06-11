@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
+      layout:decorate="~{layout/layout}">
 <head>
     <title>New issue</title>
 </head>
@@ -10,47 +10,48 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1>New Jira Issue</h1>
+    <h1 style="display: flex; justify-content: center">Cоздание отчёта об ошибке</h1>
+    <br>
     <form class="ui large form" method="post" th:action="@{/issue/newJiraIssueInternal}">
         <div class="field">
-            <label>Subject</label>
-            <input type="text" name="subject" placeholder="Subject"/>
+            <label>Название</label>
+            <input type="text" name="subject" placeholder="Название"/>
         </div>
         <div class="field">
-            <label>Description</label>
+            <label>Описание</label>
             <textarea th:text="${ticketDescription}" name="description"></textarea>
         </div>
         <div class="field">
-            <label>Prerequisites</label>
+            <label>Шаги по настройке</label>
             <textarea th:text="${tc.prerequisites}" name="prerequisites"></textarea>
         </div>
         <div class="field">
-            <label>Steps to reproduce</label>
+            <label>Шаги для воспроизведения</label>
             <textarea th:text="${tc.testcaseSteps}" name="stepsToReproduce"></textarea>
         </div>
         <div class="field">
-            <label>Expected result</label>
+            <label>Ожидаемый результат</label>
             <input th:value="${tc.expectedResult}" readonly="readonly" type="text" name="expectedResult" placeholder="Expected result"/>
         </div>
         <div class="field">
-            <label>Actual result</label>
+            <label>Действительный результат</label>
             <input type="text" name="actualResult" placeholder="Actual result"/>
         </div>
         <span>
             <div class="field">
-            <label>Started on</label>
+            <label>Начат в</label>
             <input th:value="${startDate}" type="text" name="startedOn" disabled placeholder="Started on"/>
         </div>
             <div class="field">
-        <label>Ended on</label>
+        <label>Закончен в</label>
         <input th:value="${endDate}" type="text" name="endedOn" disabled placeholder="Ended on"/>
         </div>
         </span>
 
         <div class="field">
             <span>
-                <label>Stacktrace</label>
-                <input class="ui button" style="margin-left: 50px" type="button" value="Paste stacktrace"
+                <label>Стектрейс</label>
+                <input class="ui button" style="margin-left: 50px" type="button" value="Вставить стектрейс"
                        th:data1="${startDate}"
                        th:onclick="javascript:getStackTrace(this.getAttribute('data1'));">
         <script>
@@ -71,11 +72,11 @@
 
         <div class="field">
             <label>Keywords</label>
-            <input type="text" name="keywords" placeholder="Keywords (separated by comma)"/>
+            <input type="text" name="keywords" placeholder="Ключевые слова (через запятую)"/>
         </div>
         <input type="hidden" name="testcaseId" th:value="${tc.testcaseId}"/>
 
-        <button type="submit" class="ui primary button">create</button>
+        <button type="submit" class="ui primary button">Создать</button>
     </form>
 </div>
 </body>

@@ -1,4 +1,4 @@
-package com.amgchv.services;
+package com.amgchv.services.impl;
 
 import com.amgchv.exceptions.PasswordPreviousException;
 import com.amgchv.exceptions.UserAlreadyExistsException;
@@ -7,15 +7,13 @@ import com.amgchv.models.Role;
 import com.amgchv.models.User;
 import com.amgchv.repositories.RoleJpaRepository;
 import com.amgchv.repositories.UserJpaRepository;
+import com.amgchv.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 @Service

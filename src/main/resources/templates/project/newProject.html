@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
+      layout:decorate="~{layout/layout}">
 <head>
     <title>New Project</title>
 </head>
@@ -11,21 +11,21 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1>New Project</h1>
+    <h1 style="display: flex; justify-content: center">Создание проекта</h1>
     <form class="ui large form" method="post" th:action="@{/projects/new}">
         <div class="field">
-            <label>Project Name</label>
-            <input type="text" name="name" placeholder="Project Name"/>
+            <label>Название проекта</label>
+            <input type="text" name="name" placeholder="Название проекта"/>
         </div>
         <div class="field">
-            <label>Jira Project Key</label>
-            <input type="text" name="jiraProjectKey" placeholder="Jira Project Key"/>
+            <label>Ключ проекта на Jira</label>
+            <input type="text" name="jiraProjectKey" placeholder="Ключ проекта на Jira"/>
         </div>
         <div class="field">
-            <label>Project Description</label>
+            <label>Описание проекта</label>
             <textarea name="description"></textarea>
         </div>
-        <button type="submit" class="ui primary button">create</button>
+        <button type="submit" class="ui primary button">Создать</button>
     </form>
 </div>
 </body>

@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
+      layout:decorate="~{layout/layout}">
 <head>
     <title>Users</title>
 </head>
@@ -11,16 +11,16 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1 style="display: flex; justify-content: center">Users</h1>
+    <h1 style="display: flex; justify-content: center">Пользователи</h1>
     <table class="ui table" th:if="${users}">
         <thead class="thead-dark">
             <tr>
-                <th>#</th>
-                <th>Account</th>
-                <th>Name</th>
+                <th>ID</th>
+                <th>Имя пользователя</th>
+                <th>Имя</th>
                 <th>Email</th>
-                <th>Role</th>
-                <th>Management</th>
+                <th>Роль</th>
+                <th>Управление</th>
             </tr>
         </thead>
         <tbody>
@@ -31,9 +31,9 @@
                 <td th:text="*{email}"></td>
                 <td th:text="*{role}"></td>
                 <td>
-                    <a th:href="@{'changeRole/' + ${user.userId}}" >Сhange role</a>
+                    <a th:href="@{'changeRole/' + ${user.userId}}" >Сменить роль</a>
                     /
-                    <a th:href="@{'delete/' + ${user.userId}}" >Delete</a>
+                    <a th:href="@{'delete/' + ${user.userId}}" >Удалить</a>
                 </td>
             </tr>
         </tbody>

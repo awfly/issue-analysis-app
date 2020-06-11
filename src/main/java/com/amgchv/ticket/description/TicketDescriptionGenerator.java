@@ -10,20 +10,20 @@ import java.time.temporal.ChronoUnit;
 
 public class TicketDescriptionGenerator {
 
-    private static final String FROM = "From: ";
-    private static final String HELLO_MESSAGE = "Good day, colleagues!";
-    private static final String ERROR_MESSAGE = "During testing scenario - ";
-    private static final String PART_OF = ", which is part of the testcase - ";
-    private static final String FACED_PROBLEM = ", we got a problem.";
-    private static final String TAKE_A_LOOK = "Could you please take a look?";
-    private static final String BEFORE_TEST = "Before checking the testcase, the following prerequisites were performed: ";
-    private static final String STEPS = "Testing was carried out in the following test steps: ";
-    private static final String START_TIME = "Testing was started at : ";
-    private static final String END_TIME = "Testing was completed in : ";
-    private static final String ER = "Expected result: ";
-    private static final String AR = "Actual result: ";
-    private static final String SIMILAR_TICKETS_BY_EXCEPTION = "Similar tickets by exceptions: ";
-    private static final String SIMILAR_TICKETS_BY_KEYWORDS = "Similar tickets by result: ";
+    private static final String FROM = "От: ";
+    private static final String HELLO_MESSAGE = "Добрый день, коллеги!";
+    private static final String ERROR_MESSAGE = "В процессе проверки тесткейса - ";
+    private static final String PART_OF = ", который является частью сценария - ";
+    private static final String FACED_PROBLEM = ", мы столкнулись с проблемой.";
+    private static final String TAKE_A_LOOK = "Не могли бы вы взглянуть?";
+    private static final String BEFORE_TEST = "Перед началом тестеровния были проделаны следующие настройки: ";
+    private static final String STEPS = "Тестирование проводилось по следующим шагам: ";
+    private static final String START_TIME = "Тестирование было начато в: ";
+    private static final String END_TIME = "Тестирование было окончено в: ";
+    private static final String ER = "Ожидаемый результат: ";
+    private static final String AR = "Действительный результат: ";
+    private static final String SIMILAR_TICKETS_BY_EXCEPTION = "Найдено схожих тикетов по exception: ";
+    private static final String SIMILAR_TICKETS_BY_KEYWORDS = "Найдено схожих тикетов по ключевым словам: ";
 
     public static String generateDescriptionFromTestcase(Testcase testcase, User user, LocalDateTime startDate, LocalDateTime endDate) {
         StringBuilder stringBuilder = new StringBuilder();

@@ -1,4 +1,4 @@
-package com.amgchv.services;
+package com.amgchv.services.impl;
 
 import com.amgchv.models.Issue;
 import com.amgchv.models.Scenario;
@@ -6,6 +6,7 @@ import com.amgchv.models.Testcase;
 import com.amgchv.repositories.IssueJpaRepository;
 import com.amgchv.repositories.ScenarioJpaRepository;
 import com.amgchv.repositories.TestcaseJpaRepository;
+import com.amgchv.services.TestcaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

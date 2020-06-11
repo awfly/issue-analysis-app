@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.Set;
 
 @Entity
 @Data
@@ -33,7 +32,7 @@ public class User {
     private String email;
 
     @NonNull
-    private String password; // added for Spring Security
+    private String password;
 
     @OneToOne
     private Role role;

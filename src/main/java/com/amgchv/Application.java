@@ -34,46 +34,46 @@ public class Application implements CommandLineRunner {
     @Transactional
     @Override
     public void run(String... args) throws Exception {
-        Permission readIssue = new Permission("readIssue");
-        Permission writeIssue = new Permission("writeIssue");
-        Permission manageUser = new Permission("manageUser");
-
-        em.persist(readIssue);
-        em.persist(writeIssue);
-        em.persist(manageUser);
-
-        Role adminRole = new Role("admin");
-        adminRole.setPermissions(new HashSet<Permission>() {{
-            add(readIssue);
-            add(writeIssue);
-            add(manageUser);
-        }});
-        em.persist(adminRole);
-
-        Role developerRole = new Role("developer");
-        developerRole.setPermissions(new HashSet<Permission>() {{
-            add(readIssue);
-            add(writeIssue);
-        }});
-        em.persist(developerRole);
-
-        Role guestRole = new Role("guest");
-        guestRole.setPermissions(new HashSet<Permission>() {{
-            add(readIssue);
-        }});
-        em.persist(guestRole);
-
-        User guestUser = new User("guest", "guest", "guest", "test@test.com", passwordEncoder.encode("guest"));
-        guestUser.setRole(guestRole);
-        em.persist(guestUser);
-
-        User developerUser = new User("developer", "developer", "developer", "test@test.com",passwordEncoder.encode("developer"));
-        developerUser.setRole(developerRole);
-        em.persist(developerUser);
-
-        User adminUser = new User("admin", "admin", "admin", "test@test.com", passwordEncoder.encode("admin"));
-        adminUser.setRole(adminRole);
-        em.persist(adminUser);
+//        Permission readIssue = new Permission("readIssue");
+//        Permission writeIssue = new Permission("writeIssue");
+//        Permission manageUser = new Permission("manageUser");
+//
+//        em.persist(readIssue);
+//        em.persist(writeIssue);
+//        em.persist(manageUser);
+//
+//        Role adminRole = new Role("admin");
+//        adminRole.setPermissions(new HashSet<Permission>() {{
+//            add(readIssue);
+//            add(writeIssue);
+//            add(manageUser);
+//        }});
+//        em.persist(adminRole);
+//
+//        Role userRole = new Role("user");
+//        userRole.setPermissions(new HashSet<Permission>() {{
+//            add(readIssue);
+//            add(writeIssue);
+//        }});
+//        em.persist(userRole);
+//
+//        Role guestRole = new Role("guest");
+//        guestRole.setPermissions(new HashSet<Permission>() {{
+//            add(readIssue);
+//        }});
+//        em.persist(guestRole);
+//
+//        User guestUser = new User("ivanov_i", "Ivanov", "Ivan", "ivanov@gmail.com", passwordEncoder.encode("ivanov_i"));
+//        guestUser.setRole(guestRole);
+//        em.persist(guestUser);
+//
+//        User developerUser = new User("petrov_p", "Petrov", "Petr", "petrov@gmail.com",passwordEncoder.encode("petrov_p"));
+//        developerUser.setRole(userRole);
+//        em.persist(developerUser);
+//
+//        User adminUser = new User("admin", "Migachev", "Anton", "amgchv@gmail.com", passwordEncoder.encode("admin"));
+//        adminUser.setRole(adminRole);
+//        em.persist(adminUser);
 
 //        Project project1 = new Project("Security Development", "Our Security Development Project");
 //        em.persist(project1);

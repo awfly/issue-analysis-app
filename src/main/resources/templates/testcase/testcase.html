@@ -2,50 +2,41 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
+      layout:decorate="~{layout/layout}">
 <head>
     <title>Testcase</title>
+<!--    <style>-->
+<!--        .card-img-top{-->
+<!--            transform: scale(0.9);-->
+<!--        }-->
+<!--        .card{-->
+<!--            transform: scale(0.9);-->
+<!--        }-->
+<!--    </style>-->
 </head>
 <body>
 <div layout:fragment="content">
     <br>
     <br>
-    <h1 style="display: flex; justify-content: center;" th:text="'Testcase - ' + ${testcase.name}">Testcase</h1>
+    <h1 style="display: flex; justify-content: center;" th:text="'Тесткейс - ' + ${testcase.name}">Testcase</h1>
     <br>
     <div class="container" th:switch="${inProgress}" >
         <div class="row" style="display: flex; justify-content: space-between;">
                 <a class="ui button green" th:case="false"
-                   th:href="@{'/testcases/testcase/start/' + ${testcase.testcaseId}}">Start</a>
+                   th:href="@{'/testcases/testcase/start/' + ${testcase.testcaseId}}">Запуск</a>
                 <span th:case="true">
         <a class="ui button green"
-           th:href="@{'/testcases/testcase/passed/' + ${testcase.testcaseId}}">Testcase passed</a>
-        <a class="ui button red" th:href="@{'/issue/new/' + ${testcase.testcaseId}}">Testcase failed</a>
+           th:href="@{'/testcases/testcase/passed/' + ${testcase.testcaseId}}">Успешно пройден</a>
+        <a class="ui button red" th:href="@{'/issue/new/' + ${testcase.testcaseId}}">Произошла ошибка</a>
         </span>
-
-                <a class="ui button blue" style="float: left" th:text="${inProgress} ? 'In progress' : 'Not started'">
+                <a class="ui button blue" style="float: left" th:text="${inProgress} ? 'Запущен' : 'Не запущен'">
                 </a>
         </div>
     </div>
-<!--    <table class="ui table" th:if="${testcase}">-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th>Name</th>-->
-<!--            <th>Description</th>-->
-<!--            <th>Expected Result</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr th:object="${testcase}">-->
-<!--            <td th:text="*{name}">DUMMY SUBJECT</td>-->
-<!--            <td th:text="*{description}">DUMMY SUBJECT</td>-->
-<!--            <td th:text="*{expectedResult}">DUMMY SUBJECT</td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
 
     <div class="card mb-3" style="margin-top: 20px;">
         <div class="card-body">
-            <h4 class="card-title">Testcase name: </h4>
+            <h4 class="card-title">Название тесткейса: </h4>
             <p th:text="${testcase.name}" class="card-text" style="font-size: 12pt"></p>
         </div>
     </div>
@@ -54,8 +45,8 @@
         <div class="card">
             <img class="card-img-top" src="/images/description.png" >
             <div class="card-body">
-                <h4 class="card-title">Description:</h4>
-                <p th:text="${testcase.description}" class="card-text" style="font-size: 12pt">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <h4 class="card-title">Описание:</h4>
+                <p th:text="${testcase.description}" class="card-text" style="font-size: 12pt ; white-space: pre-line"></p>
             </div>
             <div class="card-footer">
 
@@ -64,8 +55,8 @@
         <div class="card">
             <img class="card-img-top" src="/images/pre.png" >
             <div class="card-body">
-                <h4 class="card-title">Prerequisites:</h4>
-                <p th:text="${testcase.prerequisites}" class="card-text" style="font-size: 12pt">This card has supporting text below as a natural lead-in to additional content.</p>
+                <h4 class="card-title">Пререквизиты:</h4>
+                <p th:text="${testcase.prerequisites}" class="card-text" style="font-size: 12pt ; white-space: pre-line"></p>
             </div>
             <div class="card-footer">
 
@@ -74,8 +65,8 @@
         <div class="card">
             <img class="card-img-top" src="/images/steps.png" >
             <div class="card-body">
-                <h4 class="card-title">Testcase steps:</h4>
-                <p th:text="${testcase.testcaseSteps}" class="card-text" style="font-size: 12pt">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                <h4 class="card-title">Тестовые шаги:</h4>
+                <p th:text="${testcase.testcaseSteps}" class="card-text" style="font-size: 12pt; white-space: pre-line"></p>
             </div>
             <div class="card-footer">
 
@@ -85,8 +76,8 @@
 
     <div class="card mb-3" style="margin-top: 20px;">
         <div class="card-body">
-            <h4 class="card-title">Expected result:</h4>
-            <p th:text="${testcase.expectedResult}" class="card-text" style="font-size: 12pt">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h4 class="card-title">Ожидаемый результат:</h4>
+            <p  th:text="${testcase.expectedResult}" class="card-text" style="font-size: 12pt"></p>
         </div>
     </div>
 </div>

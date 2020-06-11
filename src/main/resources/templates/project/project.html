@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/layout}">
+      layout:decorate="~{layout/layout}">
 <head>
     <title th:text="${project.name} + ' Project'"></title>
 </head>
@@ -10,12 +10,12 @@
 <div layout:fragment="content">
     <br>
     <br>
-    <h1 th:text="${project.name} + ' Project'"></h1>
+    <h1 style="display: flex; justify-content: center" th:text="${project.name} + ' Project'"></h1>
     <table class="ui table" th:if="${project}">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Название проекта</th>
+            <th>Описание проекта</th>
         </tr>
         </thead>
         <tbody>
@@ -31,12 +31,12 @@
     <br>
 
     <div class="container">
-        <h1 th:text="${project.name} + ' Scenarios'"></h1>
+        <h1 style="display: flex; justify-content: center" th:text="'Cценарии для проекта ' + ${project.name}"></h1>
         <br>
         <div class="text-body left">
             <a class="btn btn-secondary" data-toggle="collapse" href="#collapseExample"
                role="button" aria-expanded="false"
-               aria-controls="collapseExample">Add Scenario <i class="fas fa-plus"></i></a>
+               aria-controls="collapseExample">Добавить сценарий <i class="fas fa-plus"></i></a>
         </div>
 
         <div class="collapse" id="collapseExample">
@@ -44,15 +44,15 @@
                 <form method="post" th:action="@{/scenarios/new}">
                     <div class="form-group">
                         <input type="text" class="form-control"
-                               name="name" required="required" placeholder="Enter Scenario Name"/>
+                               name="name" required="required" placeholder="Введите название для сценария"/>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Enter Scenario Description"
+                        <textarea class="form-control" placeholder="Введите описание для сценария"
                                   name="description"></textarea>
                     </div>
                     <input type="hidden" name="projectId" th:value="${project.projectId}"/>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-secondary">Add</button>
+                        <button type="submit" class="btn btn-secondary">Добавить</button>
                     </div>
                 </form>
             </div>
@@ -69,12 +69,12 @@
                     <div>
                     <a class="text-right"
                        th:href="'/scenarios/scenario/' + ${scenario.scenarioId}">
-                        Open Scenario
+                        Открыть сценарий
                     </a>
                         /
                     <a class="text-right"
                        th:href="'/scenarios/scenario/delete/' + ${scenario.scenarioId}">
-                        Delete Scenario
+                        Удалить сценарий
                     </a>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                         </a>
                             <a
                                th:href="@{'/testcases/testcase/delete/' + ${testcase.testcaseId}}">
-                                Delete Testcase
+                                Удалить тесткейс
                             </a>
                         </div>
                     </div>

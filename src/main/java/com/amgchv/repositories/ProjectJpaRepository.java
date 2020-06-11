@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProjectJpaRepository extends JpaRepository<Project, Long> {
     void deleteByName(String projectName);
+    Project getByJiraProjectKey(String key);
 }

@@ -20,7 +20,7 @@ public class LogServiceImpl implements LogService {
 
     private static final String EXCEPTION_PATTERN_REGEXP = "([a-zA-Z.]*([a-zA-Z]Exception))";
 
-    private static final String LOG_PATH = "logs/spring-boot-logger-log4j2.log";
+    private static final String LOG_PATH = "C:\\univer\\demo\\logs\\spring-boot-logger-log4j2.log";
 
     @Override
     public String getAllLogs() {
@@ -50,11 +50,15 @@ public class LogServiceImpl implements LogService {
                 }
             }
             if (startIndex == 0) {
-                startIndex = stringArray.length - 200;
+                    for (int i = 0; i < stringArray.length; i++) {
+                        stringBuilder.append(stringArray[i]).append("\n");
+                    }
+            } else {
+                for (int i = startIndex; i < stringArray.length; i++) {
+                    stringBuilder.append(stringArray[i]).append("\n");
+                }
             }
-            for (int i = startIndex; i < stringArray.length; i++) {
-                stringBuilder.append(stringArray[i]).append("\n");
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
